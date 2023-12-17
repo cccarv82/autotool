@@ -1,2 +1,9 @@
 venv
 __pycache__
+__init__.py
+setup.py
+autotool.egg-info
+build
+dist
+pypi.txt
+*.egg-info
