@@ -17,6 +17,7 @@ def check_installations():
         {"name": "Python", "command": "python --version"},
         {"name": "pip", "command": "pip --version"},
         {"name": "Robot Framework", "command": "robot --version"},
+        {"name": "Node.js", "command": "node --version"},  # Adicionado verificação do Node.js
     ]
     exit_code = 0
     for program in programs:
