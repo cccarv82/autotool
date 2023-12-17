@@ -7,3 +7,4 @@ build
 dist
 pypi.txt
 *.egg-info
+update.sh
