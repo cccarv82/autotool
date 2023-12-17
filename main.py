@@ -1,0 +1,7 @@
+from check_installations import check_installations
+from create_project_folder import create_project_folder
+from create_virtual_env import create_virtual_env
+
+check_installations()
+project_name = create_project_folder()
+create_virtual_env(project_name)
