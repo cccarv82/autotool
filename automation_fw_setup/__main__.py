@@ -1,3 +1,8 @@
+import sys
+import os
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from automation_fw_setup.check_installations import check_installations
 from automation_fw_setup.create_project_folder import create_project_folder
 from automation_fw_setup.create_virtual_env import create_virtual_env
