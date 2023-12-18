@@ -2,9 +2,29 @@
 
 This project is a script to set up a new test automation project. It asks the user to select a test framework and a target platform for automation.
 
+## Current Version
+
+The current version of the program is 0.1.5.14.
+
+## Installation
+
+You can install the Test Automation Project Setup using pip:
+
+```sh
+pip install automation-fw-setup
+```
+
 ## Usage
 
-Run the `main.py` script:
+After installation, you can run the program using the following command:
+
+```sh
+automation_fw_setup
+```
+
+This will start the program, which will guide you through the process of setting up your test automation project.
+
+Alternatively, you can run the `main.py` script:
 
 ```sh
 python main.py

@@ -1,5 +1,6 @@
 import sys
 import os
+import pkg_resources
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
@@ -12,6 +13,12 @@ from automation_fw_setup.clone_repository import clone_repository
 from colorama import Fore, Style
 
 def main():
+
+    # Get the current version
+    current_version = pkg_resources.get_distribution('automation-fw-setup').version
+
+    print(f"Creating your awesome project using Automation Framework Setup v{current_version}")
+
     framework_choice = ask_test_framework()
 
     if framework_choice == 'Robot Framework':
@@ -20,7 +27,7 @@ def main():
             project_name = create_project_folder()
             clone_repository(project_name)
             create_virtual_env(project_name)
-            check_installations()
+            check_installations(project_name)  # pass project_name to check_installations
         else:
             print(f"{Fore.RED}✗{Style.RESET_ALL} The selected platform is not yet supported.")
 
