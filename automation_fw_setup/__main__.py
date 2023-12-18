@@ -10,6 +10,7 @@ from automation_fw_setup.create_virtual_env import create_virtual_env
 from automation_fw_setup.ask_test_framework import ask_test_framework
 from automation_fw_setup.ask_target_platform import ask_target_platform
 from automation_fw_setup.clone_repository import clone_repository
+from automation_fw_setup.requirements_install import install_requirements
 from colorama import Fore, Style
 
 def main():
@@ -30,7 +31,8 @@ def main():
             project_name = create_project_folder()
             clone_repository(project_name)
             create_virtual_env(project_name)
-            check_installations(project_name)  # pass project_name to check_installations
+            check_installations(project_name)
+            install_requirements(project_name)
         else:
             print(f"{Fore.RED}✗{Style.RESET_ALL} The selected platform is not yet supported.")
 
