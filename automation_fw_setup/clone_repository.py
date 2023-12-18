@@ -1,7 +1,8 @@
 import git
 import os
 import shutil
-import time
+import subprocess
+import platform
 from colorama import Fore, Style
 
 def clone_repository(project_name):
@@ -22,5 +23,7 @@ def clone_repository(project_name):
 def remove_git_dir(project_name):
     git_dir = os.path.join(project_name, '.git')
     if os.path.exists(git_dir):
-        time.sleep(5)  # wait for 5 seconds before removing the directory
-        shutil.rmtree(git_dir)
+        if platform.system() == 'Windows':
+            subprocess.run(['rmdir', '/s', '/q', git_dir], shell=True)
+        else:
+            shutil.rmtree(git_dir, ignore_errors=True)
