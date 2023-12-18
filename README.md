@@ -41,3 +41,7 @@ Support for 'Playwright' and 'Cypress' test frameworks, and 'Mobile', 'Desktop',
 ## Contributions
 
 Contributions to this project are welcome! If you have a feature request, bug report, or proposal, please open an issue. If you wish to contribute code, please open a pull request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
