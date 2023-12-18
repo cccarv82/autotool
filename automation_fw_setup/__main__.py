@@ -17,31 +17,33 @@ from automation_fw_setup.check_for_updates import check_for_updates  # new impor
 from colorama import Fore, Style
 
 def main():
-
-    check_for_updates()  # new line
-
-    # Get the current version
     try:
-        current_version = pkg_resources.get_distribution('automation-fw-setup').version
-    except pkg_resources.DistributionNotFound:
-        current_version = 'local'
+        check_for_updates()  # new line
 
-    print(f"Creating your awesome project using Automation Framework Setup v{current_version}")
+        # Get the current version
+        try:
+            current_version = pkg_resources.get_distribution('automation-fw-setup').version
+        except pkg_resources.DistributionNotFound:
+            current_version = 'local'
 
-    framework_choice = ask_test_framework()
+        print(f"Creating your awesome project using Automation Framework Setup v{current_version}")
 
-    if framework_choice == 'Robot Framework':
-        platform_choice = ask_target_platform()
-        if platform_choice == 'Web':
-            project_name = create_project_folder()
-            clone_repository(project_name)
-            create_virtual_env(project_name)
-            check_installations(project_name)
-            install_requirements(project_name)
-            print_final_messages(project_name)  # new line
-        else:
-            print(f"{Fore.RED}✗{Style.RESET_ALL} The selected platform is not yet supported.")
+        framework_choice = ask_test_framework()
 
+        if framework_choice == 'Robot Framework':
+            platform_choice = ask_target_platform()
+            if platform_choice == 'Web':
+                project_name = create_project_folder()
+                clone_repository(project_name)
+                create_virtual_env(project_name)
+                check_installations(project_name)
+                install_requirements(project_name)
+                print_final_messages(project_name)  # new line
+            else:
+                print(f"{Fore.RED}✗{Style.RESET_ALL} The selected platform is not yet supported.")
+    except KeyboardInterrupt:
+        print("\nProgram interrupted by user. Exiting...")
+        sys.exit(0)
 
 def print_final_messages(project_name):  # new function
     print(f"{Fore.YELLOW}!{Style.RESET_ALL} Consider versioning your code using git. You can start by running the following commands in your project directory:")

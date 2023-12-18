@@ -31,7 +31,7 @@ def check_for_updates():
 
         questions = [
             inquirer.Confirm('update',
-                             message=f"{Fore.YELLOW}[?]{Style.RESET_ALL} Do you want to update now?",
+                             message=f"Do you want to update now?",
                              default=True),
         ]
 
