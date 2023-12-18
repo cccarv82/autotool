@@ -1,3 +1,5 @@
+# __main__.py
+
 import sys
 import os
 import pkg_resources
@@ -11,9 +13,12 @@ from automation_fw_setup.ask_test_framework import ask_test_framework
 from automation_fw_setup.ask_target_platform import ask_target_platform
 from automation_fw_setup.clone_repository import clone_repository
 from automation_fw_setup.requirements_install import install_requirements
+from automation_fw_setup.check_for_updates import check_for_updates  # new import
 from colorama import Fore, Style
 
 def main():
+
+    check_for_updates()  # new line
 
     # Get the current version
     try:
@@ -36,6 +41,7 @@ def main():
             print_final_messages(project_name)  # new line
         else:
             print(f"{Fore.RED}✗{Style.RESET_ALL} The selected platform is not yet supported.")
+
 
 def print_final_messages(project_name):  # new function
     print(f"{Fore.YELLOW}!{Style.RESET_ALL} Consider versioning your code using git. You can start by running the following commands in your project directory:")
