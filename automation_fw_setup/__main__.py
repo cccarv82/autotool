@@ -17,14 +17,12 @@ def main():
     if framework_choice == 'Robot Framework':
         platform_choice = ask_target_platform()
         if platform_choice == 'Web':
-            check_installations()
             project_name = create_project_folder()
             clone_repository(project_name)
             create_virtual_env(project_name)
+            check_installations()
         else:
             print(f"{Fore.RED}✗{Style.RESET_ALL} The selected platform is not yet supported.")
-    else:
-        print(f"{Fore.RED}✗{Style.RESET_ALL} The selected framework is not yet supported.")
 
 if __name__ == "__main__":
     main()

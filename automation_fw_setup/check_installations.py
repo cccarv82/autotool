@@ -5,7 +5,7 @@ from colorama import Fore, Style
 
 def install_robot_framework():
     print("Installing Robot Framework...")
-    subprocess.run(["pip", "install", "robotframework"], check=True)
+    subprocess.run(["venv/bin/python", "-m", "pip", "install", "robotframework"], check=True)
 
 def check_installation(program_name, check_command, install_function=None):
     result = subprocess.run(check_command, capture_output=True, shell=True, text=True)
@@ -31,11 +31,8 @@ def check_installations():
         {"name": "Python", "command": "python --version"},
         {"name": "pip", "command": "pip --version"},
         {"name": "Robot Framework", "command": "robot --version", "install": install_robot_framework},
-        {"name": "Node.js", "command": "node --version"},  # Adicionado verificação do Node.js
+        {"name": "Node.js", "command": "node --version", "install_url": "https://nodejs.org/en/download/"},
     ]
-    exit_code = 0
+
     for program in programs:
-        if not check_installation(program["name"], program["command"], program.get("install")):
-            exit_code = 1
-    if exit_code == 1:
-        sys.exit(1)
+        check_installation(program["name"], program["command"], program.get("install"))
