@@ -18,11 +18,10 @@ def check_installation(program_name, check_command, project_name, install_functi
         result = subprocess.run(check_command, capture_output=True, text=True)
         output = result.stdout.strip() if result.stdout.strip() else result.stderr.strip()
         if result.returncode != 0:
-            print(f"{Fore.RED}✗{Style.RESET_ALL} Could not detect {program_name} version")
             if install_function:
                 questions = [
                     inquirer.Confirm('install',
-                                     message=f"Do you want to install {program_name}?"),
+                                     message=f"Do you want to install {program_name} in the Virtual Env ?"),
                 ]
                 answers = inquirer.prompt(questions)
                 if answers['install']:

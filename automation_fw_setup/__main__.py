@@ -15,7 +15,10 @@ from colorama import Fore, Style
 def main():
 
     # Get the current version
-    current_version = pkg_resources.get_distribution('automation-fw-setup').version
+    try:
+        current_version = pkg_resources.get_distribution('automation-fw-setup').version
+    except pkg_resources.DistributionNotFound:
+        current_version = 'local'
 
     print(f"Creating your awesome project using Automation Framework Setup v{current_version}")
 
