@@ -1,6 +1,7 @@
 import git
 import os
 import shutil
+import time
 from colorama import Fore, Style
 
 def clone_repository(project_name):
@@ -18,7 +19,8 @@ def clone_repository(project_name):
     print("git commit -m 'Initial commit'")
     print("For more information, visit: https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup")
 
-def remove_git_dir(project_name):  # new function
+def remove_git_dir(project_name):
     git_dir = os.path.join(project_name, '.git')
     if os.path.exists(git_dir):
+        time.sleep(5)  # wait for 5 seconds before removing the directory
         shutil.rmtree(git_dir)
