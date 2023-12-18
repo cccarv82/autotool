@@ -13,14 +13,13 @@ from automation_fw_setup.ask_test_framework import ask_test_framework
 from automation_fw_setup.ask_target_platform import ask_target_platform
 from automation_fw_setup.clone_repository import clone_repository
 from automation_fw_setup.requirements_install import install_requirements
-from automation_fw_setup.check_for_updates import check_for_updates  # new import
+from automation_fw_setup.check_for_updates import check_for_updates
 from colorama import Fore, Style
 
 def main():
     try:
-        check_for_updates()  # new line
+        check_for_updates()
 
-        # Get the current version
         try:
             current_version = pkg_resources.get_distribution('automation-fw-setup').version
         except pkg_resources.DistributionNotFound:
@@ -29,23 +28,34 @@ def main():
         print(f"Creating your awesome project using Automation Framework Setup v{current_version}")
 
         framework_choice = ask_test_framework()
+        if framework_choice is None:
+            return
 
         if framework_choice == 'Robot Framework':
             platform_choice = ask_target_platform()
+            if platform_choice is None:
+                return
+
             if platform_choice == 'Web':
-                project_name = create_project_folder()
-                clone_repository(project_name)
-                create_virtual_env(project_name)
-                check_installations(project_name)
-                install_requirements(project_name)
-                print_final_messages(project_name)  # new line
+                try:
+                    project_name = create_project_folder()
+                    clone_repository(project_name)
+                    create_virtual_env(project_name)
+                    check_installations(project_name)
+                    install_requirements(project_name)
+                    print_final_messages(project_name)
+                except Exception as e:
+                    print(f"An error occurred: {e}")
+                    return
             else:
                 print(f"{Fore.RED}✗{Style.RESET_ALL} The selected platform is not yet supported.")
+        else:
+            print(f"{Fore.RED}✗{Style.RESET_ALL} The selected framework is not yet supported.")
     except KeyboardInterrupt:
         print("\nProgram interrupted by user. Exiting...")
         sys.exit(0)
 
-def print_final_messages(project_name):  # new function
+def print_final_messages(project_name):
     print(f"{Fore.YELLOW}!{Style.RESET_ALL} Consider versioning your code using git. You can start by running the following commands in your project directory:")
     print("git init")
     print("git add .")

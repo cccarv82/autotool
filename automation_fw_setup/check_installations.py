@@ -13,7 +13,11 @@ def check_installation(program_name, check_command, project_name):
     else:
         check_command = check_command.split()  # split the command into a list
         check_command = ' '.join(check_command)
-        result = subprocess.run(check_command, capture_output=True, text=True, shell=True)
+        try:
+            result = subprocess.run(check_command, capture_output=True, text=True, shell=True)
+        except subprocess.SubprocessError:
+            print(f"{Fore.RED}✗{Style.RESET_ALL} An error occurred while checking the {program_name} version.")
+            return False
         output = result.stdout.strip() if result.stdout.strip() else result.stderr.strip()
         if result.returncode != 0:
             return False
@@ -31,4 +35,5 @@ def check_installations(project_name):
     for program in programs:
         if not check_installation(program["name"], program["command"], project_name):
             print(f"{Fore.RED}✗{Style.RESET_ALL} {program['name']} not found. Please install it from {program.get('install_url', 'the official website')}.")
-            sys.exit(1)
+            return False  # return False instead of exiting the program
+    return True
