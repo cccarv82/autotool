@@ -33,8 +33,19 @@ def main():
             create_virtual_env(project_name)
             check_installations(project_name)
             install_requirements(project_name)
+            print_final_messages(project_name)  # new line
         else:
             print(f"{Fore.RED}✗{Style.RESET_ALL} The selected platform is not yet supported.")
+
+def print_final_messages(project_name):  # new function
+    print(f"{Fore.YELLOW}!{Style.RESET_ALL} Consider versioning your code using git. You can start by running the following commands in your project directory:")
+    print("git init")
+    print("git add .")
+    print("git commit -m 'Initial commit'")
+    print("For more information, visit: https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup")
+    print(f"{Fore.YELLOW}!{Style.RESET_ALL} To activate the virtual environment, navigate to the project directory and use the following command:")
+    print(f"On Linux/macOS: source {project_name}/venv/bin/activate")
+    print(f"On Windows: .\\{project_name}\\venv\\Scripts\\activate")
 
 if __name__ == "__main__":
     main()
